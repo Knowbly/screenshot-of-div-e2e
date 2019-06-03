@@ -1,0 +1,30 @@
+defaults: &defaults
+  working_directory: &working_directory ~/repo
+  machine: true
+  # docker:
+  #   - image: "vickoman/knowbly-circle:1.0.5"
+version: 2
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: 'dependency-cache-{{ checksum "package.json" }}'
+      - run: "npm version"
+      - run: "npm install"
+      - save_cache:
+          key: 'dependency-cache-{{ checksum "package.json" }}'
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: *working_directory
+          paths:
+            - package.json
+            - node_modules
+            - screenshots
+      - run: "node index-knowbly.js"
+  version: 2
+  frontend-repo-e2e:
+    jobs:
+      - build
