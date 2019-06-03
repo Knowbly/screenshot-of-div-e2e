@@ -7,7 +7,7 @@ const puppeteer = require("puppeteer");
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         args: ['--start-maximized']
     });
     const page = await browser.newPage();
