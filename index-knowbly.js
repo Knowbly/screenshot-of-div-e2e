@@ -5,33 +5,10 @@ const user = {
 
 const puppeteer = require("puppeteer");
 
-var headless = require('headless');
- 
-var options = {
-  display: {width: 1024, height: 980, depth: 32},
-  args: ["-extension", "RANDR"],
-  stdio: "inherit"
-};
- 
-// headless(function(err, childProcess, servernum) {
-  // childProcess is a ChildProcess, as returned from child_process.spawn()
-//   console.log("Xvfb running on server number", servernum);
-//   console.log("Xvfb pid", childProcess.pid);
-//   console.log("err should be null", err);
-var Xvfb = require('xvfb');
-var xvfb = new Xvfb();
-xvfb.startSync();
- 
-// code that uses the virtual frame buffer here
- 
-xvfb.stopSync();
-  runPuppeteer();
-// });
-
-async function runPuppeteer() {
+(async () => {
     const browser = await puppeteer.launch({
-        headless: true,
-        args: ["--start-maximized"]
+        headless: false,
+        args: ['--start-maximized']
     });
     const page = await browser.newPage();
     await page.setViewport({
@@ -116,4 +93,4 @@ async function runPuppeteer() {
     fs.writeFile(`./screenshots/block-${Date.now()}-.png`, buf);
     await page.waitFor(60000)
     await browser.close();
-}
+})();
