@@ -1,6 +1,7 @@
 defaults: &defaults
   working_directory: &working_directory ~/repo
-  machine: true
+  docker:
+      - image: "circleci/node:9.6.1"
   # docker:
   #   - image: "vickoman/knowbly-circle:1.0.5"
 version: 2
