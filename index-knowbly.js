@@ -13,7 +13,7 @@ var options = {
   stdio: "inherit"
 };
  
-headless(options, function(err, childProcess, servernum) {
+headless(function(err, childProcess, servernum) {
   // childProcess is a ChildProcess, as returned from child_process.spawn()
   console.log("Xvfb running on server number", servernum);
   console.log("Xvfb pid", childProcess.pid);
