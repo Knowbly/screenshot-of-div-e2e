@@ -24,6 +24,7 @@ jobs:
             - node_modules
             - screenshots
       - run: "node index-knowbly.js"
+workflows:
   version: 2
   frontend-repo-e2e:
     jobs:
