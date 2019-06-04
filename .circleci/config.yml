@@ -14,6 +14,7 @@ jobs:
           key: 'dependency-cache-{{ checksum "package.json" }}'
       - run: "npm version"
       - run: "npm install"
+      - run: "Xvfb :99"
       - save_cache:
           key: 'dependency-cache-{{ checksum "package.json" }}'
           paths:
@@ -24,7 +25,7 @@ jobs:
             - package.json
             - node_modules
             - screenshots
-      - run: "node index-knowbly.js"
+      - run: "export DISPLAY=:99 node index-knowbly.js"
 workflows:
   version: 2
   frontend-repo-e2e:
