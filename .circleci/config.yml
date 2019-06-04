@@ -14,7 +14,7 @@ jobs:
           key: 'dependency-cache-{{ checksum "package.json" }}'
       - run: "npm version"
       - run: "npm install"
-      - run: "Xvfb :99"
+      # - run: "Xvfb :99"
       - save_cache:
           key: 'dependency-cache-{{ checksum "package.json" }}'
           paths:
