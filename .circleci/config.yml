@@ -25,7 +25,7 @@ jobs:
             - package.json
             - node_modules
             - screenshots
-      - run: "export DISPLAY=:99 node index-knowbly.js"
+      - run: "DISPLAY=:99 node index-knowbly.js"
 workflows:
   version: 2
   frontend-repo-e2e:
