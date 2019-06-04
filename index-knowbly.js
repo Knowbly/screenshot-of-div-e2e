@@ -13,13 +13,20 @@ var options = {
   stdio: "inherit"
 };
  
-headless(function(err, childProcess, servernum) {
+// headless(function(err, childProcess, servernum) {
   // childProcess is a ChildProcess, as returned from child_process.spawn()
-  console.log("Xvfb running on server number", servernum);
-  console.log("Xvfb pid", childProcess.pid);
-  console.log("err should be null", err);
+//   console.log("Xvfb running on server number", servernum);
+//   console.log("Xvfb pid", childProcess.pid);
+//   console.log("err should be null", err);
+var Xvfb = require('xvfb');
+var xvfb = new Xvfb();
+xvfb.startSync();
+ 
+// code that uses the virtual frame buffer here
+ 
+xvfb.stopSync();
   runPuppeteer();
-});
+// });
 
 async function runPuppeteer() {
     const browser = await puppeteer.launch({
